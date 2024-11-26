@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Read from ".env" file.
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * Read environment variables from file.
@@ -37,7 +42,7 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     // Base URL to use in actions like `await page.goto('/')`.
-    baseURL: 'https://wa-intknowledgeacnt.azurewebsites.net/',
+    baseURL: process.env.URL,
   },
 
   /* Configure projects for major browsers */
