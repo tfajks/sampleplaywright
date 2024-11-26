@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+export const URL = process.env['URL'];
 
 // Read from ".env" file.
 dotenv.config({ path: path.resolve(__dirname, '.env') });
+console.log("URLdotenv = " + process.env.URL as string);
 
 test('logged into KP', async ({ page }) => {
 
-  await page.goto('/settings');
+  await page.goto(process.env.URL as string);
 
   const emailField = page.locator("input[type='email']");
   const passwordField = page.locator("input[type='password']");
@@ -31,7 +33,9 @@ test('logged into KP', async ({ page }) => {
 
 test('not logged into KP', async ({ page }) => {
 
-  await page.goto('/settigs');
+
+  console.log("URLexport = " + URL);
+  await page.goto(URL as string);
 
   const emailField = page.locator("input[type='email']");
   const passwordField = page.locator("input[type='password']");

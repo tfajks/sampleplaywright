@@ -1,5 +1,8 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
+export const URL = process.env['URL'];
+console.log("URLexport = " + URL);
+
 export class LoginPage {
 
   readonly page: Page;
@@ -17,7 +20,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('/settings');;
+    await this.page.goto(URL as string);;
   }
 
   async login(username: string , password: string) {
